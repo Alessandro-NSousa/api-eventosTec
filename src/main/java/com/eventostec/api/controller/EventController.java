@@ -30,10 +30,16 @@ public class EventController {
         Event newEvent = this.eventService.createEvent(eventRequestDTO);
         return ResponseEntity.ok(newEvent);
     }
-
+    //eventos que irão acontecer
     @GetMapping
-    public ResponseEntity<List<EventResponseDto>> getEvents(@RequestParam (defaultValue = "") int page, @RequestParam(defaultValue = "10") int size) {
-        List<EventResponseDto> allEvents = this.eventService.getEvents(page, size);
+    public ResponseEntity<List<EventResponseDto>> UpComingEvents(@RequestParam (defaultValue = "") int page, @RequestParam(defaultValue = "10") int size) {
+        List<EventResponseDto> allEvents = this.eventService.getUpComingEvents(page, size);
+        return ResponseEntity.ok(allEvents);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<EventResponseDto>> getEventsAll(@RequestParam (defaultValue = "") int page, @RequestParam(defaultValue = "10") int size) {
+        List<EventResponseDto> allEvents = this.eventService.getEventsAll(page, size);
         return ResponseEntity.ok(allEvents);
     }
 }
